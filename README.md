@@ -1,4 +1,4 @@
-**# CreateRemoteThreadInjection**# CreateRemoteThreadInjection
+**# CreateRemoteThreadInjection**
 
 ## プロジェクトの概要
 このプロジェクトではCreateRemoteThread関数を使った古典的なプロセスインジェクションツールを実装しました。  
