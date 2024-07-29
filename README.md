@@ -9,7 +9,7 @@
 このツールの目的は、プロセスインジェクション技術を学び、その実装方法を理解することです。また、セキュリティ研究やマルウェア解析の教育用途にも利用されることを目指しています。
 
 ## 使い方  
-.\[インジェクター名] [プロセス名] [ファイルパス]
+'.\[インジェクター名] [プロセス名] [ファイルパス]'
 
 #### 例：```.\CreateRemoteThreadShellcodeInjection.exe Notepad.exe "C:\Code\TestShellcode\x64\Release\TestShellcode.bin"```
 (メモ帳プロセスにTest.binをシェルコードインジェクションインジェクション)
