@@ -6,5 +6,5 @@
 #include <iostream>
 #include <sstream>
 
-BOOL GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId);
+bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId);
 std::string PrintAddress(LPVOID address);

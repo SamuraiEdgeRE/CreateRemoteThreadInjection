@@ -35,7 +35,7 @@ int wmain(int argc, wchar_t* argv[]) {
 
 	// プロセス名からプロセスIDを取得
 	DWORD processId = 0;
-	BOOL successGetPid = GetProcessIdToProcessName(processName, processId);
+	bool successGetPid = GetProcessIdToProcessName(processName, processId);
 	if (!successGetPid) {
 		std::cerr << "[-] プロセス名からプロセスIDを取得できませんでした" << std::endl;
 		return 1;

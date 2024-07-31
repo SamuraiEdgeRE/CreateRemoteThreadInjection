@@ -7,7 +7,7 @@
 // processName：検索するプロセス名
 // processId：プロセスID（参照として受け取る）
 // 戻り値：成功した場合はTRUE、失敗した場合はFALSEを返す
-BOOL GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
+bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
 	// プロセスのスナップショットを作成
 	HANDLE processSnapshotHandle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, processId);
 	if (processSnapshotHandle == INVALID_HANDLE_VALUE) {
