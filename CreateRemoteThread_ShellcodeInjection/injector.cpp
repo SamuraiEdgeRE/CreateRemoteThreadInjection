@@ -12,7 +12,7 @@ bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
 	HANDLE processSnapshotHandle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, processId);
 	if (processSnapshotHandle == INVALID_HANDLE_VALUE) {
 		std::cerr << "[-] CreateToolhelp32Snapshotが失敗しました。Error code: " << GetLastError() << std::endl;
-		return FALSE;
+		return false;
 	}
 
 	// プロセス情報の初期化
@@ -24,14 +24,14 @@ bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
 	while (hasNextProcess) {
 		if (wcsstr(processEntry.szExeFile, processName) != NULL) {
 			processId = processEntry.th32ProcessID;
-			return TRUE;
+			return true;
 		}
 		// 次のプロセスを取得
 		hasNextProcess = Process32Next(processSnapshotHandle, &processEntry);
 	}
 
 	CloseHandle(processSnapshotHandle);
-	return FALSE;
+	return false;
 }
 
 // 指定されたファイルを開き、その内容をメモリに読み込んで先頭アドレスを返す関数
