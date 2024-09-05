@@ -7,7 +7,7 @@
 // processName：検索するプロセス名
 // processId：プロセスID
 // 戻り値：成功した場合はTRUE、失敗した場合はFALSEを返す
-bool GetProcessIdToProcessName(std::wstring processName, DWORD& processId) {
+bool GetProcessIdFromProcessName(std::wstring processName, DWORD& processId) {
 	// プロセスのスナップショットを作成
 	HANDLE processSnapshotHandle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	if (processSnapshotHandle == INVALID_HANDLE_VALUE) {

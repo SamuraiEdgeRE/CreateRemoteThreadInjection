@@ -30,12 +30,12 @@ int wmain(int argc, wchar_t* argv[]) {
 		return 1;
 	}
 
-	// DLLパスのサイズを取得
+	// DLLパスサイズを計算
 	SIZE_T dllPathSize = (dllPath.size() + 1) * sizeof(wchar_t);
 
 	// プロセス名からプロセスIDを取得
 	DWORD processId = 0;
-	bool successGetPid = GetProcessIdToProcessName(processName, processId);
+	bool successGetPid = GetProcessIdFromProcessName(processName, processId);
 	if (!successGetPid) {
 		std::cerr << "[-] プロセス名からプロセスIDを取得できませんでした" << std::endl;
 		return 1;
