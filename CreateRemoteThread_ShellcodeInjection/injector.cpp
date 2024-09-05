@@ -5,11 +5,11 @@
 
 // プロセス名からプロセスIDを取得する関数
 // processName：検索するプロセス名
-// processId：プロセスID（参照として受け取る）
+// processId：プロセスID
 // 戻り値：成功した場合はTRUE、失敗した場合はFALSEを返す
-bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
+bool GetProcessIdToProcessName(std::wstring processName, DWORD& processId) {
 	// プロセスのスナップショットを作成
-	HANDLE processSnapshotHandle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, processId);
+	HANDLE processSnapshotHandle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 	if (processSnapshotHandle == INVALID_HANDLE_VALUE) {
 		std::cerr << "[-] CreateToolhelp32Snapshotが失敗しました。Error code: " << GetLastError() << std::endl;
 		return false;
@@ -22,8 +22,13 @@ bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
 	BOOL hasNextProcess = Process32First(processSnapshotHandle, &processEntry);
 
 	while (hasNextProcess) {
-		if (wcsstr(processEntry.szExeFile, processName) != NULL) {
+		// szExeFileをstd::wstringに変換
+		std::wstring exeFile(processEntry.szExeFile);
+
+		// プロセス名が一致するかチェック
+		if (exeFile.find(processName) != std::wstring::npos) {
 			processId = processEntry.th32ProcessID;
+			CloseHandle(processSnapshotHandle);
 			return true;
 		}
 		// 次のプロセスを取得
@@ -38,10 +43,10 @@ bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId) {
 // filePath：読み込むファイルのパス
 // fileSize：読み込まれたファイルのサイズ（参照として受け取る）
 // 戻り値：ファイルの先頭アドレス
-LPVOID ReadFileBytes(LPCWSTR filePath, DWORD& fileSize) {
+LPVOID ReadFileBytes(std::wstring filePath, DWORD& fileSize) {
 
 	// ファイルのハンドルを取得
-	HANDLE fileHandle = CreateFile(filePath, GENERIC_READ, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+	HANDLE fileHandle = CreateFile(filePath.c_str(), GENERIC_READ, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 	if (fileHandle == INVALID_HANDLE_VALUE) {
 		std::cerr << "CreateFileが失敗しました。 Error code: " << GetLastError() << std::endl;
 		return nullptr;

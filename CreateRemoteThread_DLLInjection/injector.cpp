@@ -5,7 +5,7 @@
 
 // プロセス名からプロセスIDを取得する関数
 // processName：検索するプロセス名
-// processId：プロセスID（参照として受け取る）
+// processId：プロセスID
 // 戻り値：成功した場合はTRUE、失敗した場合はFALSEを返す
 bool GetProcessIdToProcessName(std::wstring processName, DWORD& processId) {
     // プロセスのスナップショットを作成

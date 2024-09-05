@@ -45,8 +45,7 @@ int wmain(int argc, wchar_t* argv[]) {
 	std::wcout
 		<< "[DLLインジェクター]\n"
 		<< "プロセス名：" << processName << "\n"
-		<< "プロセスID：" << processId << "\n"
-		<< "DLLパス：" << dllPath << std::endl;
+		<< "プロセスID：" << processId << std::endl;
 
 	// プロセスハンドルを取得
 	HANDLE processHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId);

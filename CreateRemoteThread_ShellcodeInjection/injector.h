@@ -8,6 +8,6 @@
 #include <iostream>
 #include <sstream>
 
-bool GetProcessIdToProcessName(LPCWSTR processName, DWORD& processId);
-LPVOID ReadFileBytes(LPCWSTR filePath, DWORD& fileSize);
+bool GetProcessIdToProcessName(std::wstring processName, DWORD& processId);
+LPVOID ReadFileBytes(std::wstring filePath, DWORD& fileSize);
 std::string PrintAddress(LPVOID address);

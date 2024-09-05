@@ -16,16 +16,16 @@ int wmain(int argc, wchar_t* argv[]) {
 		return 1;
 	}
 
-	LPCWSTR processName = argv[1];
-	LPCWSTR shellcodePath = argv[2];
+	std::wstring processName = argv[1];
+	std::wstring shellcodePath = argv[2];
 
 	// 引数の内容をチェック
-	if (wcslen(processName) == 0) {
+	if (processName.empty()) {
 		std::cerr << "[-] プロセス名が空です" << std::endl;
 		return 1;
 	}
 
-	if (wcslen(shellcodePath) == 0) {
+	if (shellcodePath.empty()) {
 		std::cerr << "[-] シェルコードパスが空です" << std::endl;
 		return 1;
 	}
@@ -50,8 +50,7 @@ int wmain(int argc, wchar_t* argv[]) {
 	std::wcout
 		<< "[シェルコードインジェクター]\n"
 		<< "プロセス名：" << processName << "\n"
-		<< "プロセスID：" << processId << "\n"
-		<< "シェルコードパス：" << shellcodePath << std::endl;
+		<< "プロセスID：" << processId << std::endl;
 
 
 	// プロセスハンドルを取得
