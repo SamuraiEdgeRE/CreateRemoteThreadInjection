@@ -36,7 +36,7 @@ CreateRemoteThreadは別プロセスにスレッドを作成するWindowsAPI関�
 #### 1.OpenProcess関数でターゲットプロセスのハンドルを取得する
 
 #### 2.VirtualAllocEx関数でシェルコードを書き込めるだけのメモリ領域を確保する
-スレッドが実行するメモリ領域のため、第5引数に*PAGE_EXECUTE_READWRITE*を渡して実行可能属性を付与します。
+後続の操作で作成する、スレッドが実行するメモリ領域のため、第5引数に*PAGE_EXECUTE_READWRITE*を渡して実行可能属性を付与しておきます
 
 #### 3.WriteProcessMemory関数で確保したメモリ領域にシェルコードを書き込む
 
